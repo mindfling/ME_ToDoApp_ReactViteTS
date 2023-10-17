@@ -1,26 +1,21 @@
 import { useState } from 'react'
+import { Button } from './Components/Button';
+import { Title } from './Components/Title';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  // const [count, setCount] = useState(0);
+  // const [discount, setDiscount] = useState(0);
 
   return (
     <>
-
+      <Title title='Заголовок приложения' />
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <button onClick={() => setDiscount((discount) => discount - 1)}>discount minus {discount}</button>
-        <p>
-          Edited summ is {count + discount}
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* <Title></Title> */}
 
+      {/* <Form></Form> */}
+
+      {/* <Table></Table> */}
+      <Button className='btn btn-primary btn-lg' type='button'>Push button</Button>
     </>
   )
 }
