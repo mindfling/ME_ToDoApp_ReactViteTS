@@ -8,6 +8,15 @@ function App() {
 
   return (
     <div className='App app-container'>
+      <Alert variant='primary'>THis is the button above</Alert>
+      
+      <p>breadcrumbs</p>
+      <Breadcrumb>
+        <Breadcrumb.Item>Text1</Breadcrumb.Item>
+        <Breadcrumb.Item>Text 2</Breadcrumb.Item>
+        <Breadcrumb.Item active={true}>Text 33</Breadcrumb.Item>
+        <Breadcrumb.Item>Text 1234</Breadcrumb.Item>
+      </Breadcrumb>
 
       <ExampleModal />
       <Title title='ToDoWka Application' />
@@ -21,9 +30,14 @@ function App() {
       <Button variant="light">Light</Button>{' '}
       <Button variant="dark">Dark</Button>
       <Button variant="link">Link</Button>
-      <CloseButton className='mb-5' />
 
-      <Table variant='dark' hover>
+      <CloseButton />
+
+      <Alert variant='warning'>Under the buttons
+        <CloseButton />
+      </Alert>
+
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -49,10 +63,7 @@ function App() {
             <td>3</td>
             <td>oeau</td>
             <td>Larry the Bird</td>
-            <td>
-              <Button variant='warning' className='mx-1'>twitter</Button>
-              <Button variant='light'>twitter</Button>
-            </td>
+            <td>twitter</td>
           </tr>
         </tbody>
       </Table>
