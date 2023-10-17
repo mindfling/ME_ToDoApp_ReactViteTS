@@ -5,13 +5,14 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 function ExampleModal() {
-  const [show, setShow] = useState(true);
+  // const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   const handleClose = () => {
     setShow(false);
     console.log('it hides');
   }
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   const submitHandle = () => {
     alert('submit');
@@ -20,12 +21,12 @@ function ExampleModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button>
       <Button variant='warning' className='mx-2' onClick={handleShow}>
         Another launch modal
-      </Button>
+      </Button> */}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

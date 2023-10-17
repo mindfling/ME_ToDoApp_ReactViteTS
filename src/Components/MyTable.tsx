@@ -1,12 +1,16 @@
-import React from 'react'
+// import React from 'react'
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 
-type Props = {}
+import { ArrowRight, ArrowReturnLeft, CheckLg, FileX } from 'react-bootstrap-icons';
+import { MDBIcon } from 'mdb-react-ui-kit';
 
-const MyTable = (props: Props) => {
+// type Props = {}
+
+const MyTable = () => {
   return (
-    <div className="table-wrapper">
-    <table className="table table-hover table-bordered">
-      <caption>List of all dooo</caption>
+    <Table className="table" bordered hover>
+      <caption>List of Список дел</caption>
       <thead>
         <tr>
           <th>№</th>
@@ -24,12 +28,33 @@ const MyTable = (props: Props) => {
           </td>
           <td>В процессе</td>
           <td>
-            <button className="btn btn-danger">
+            <Button variant='outline-danger' className='mx-2'>
               Удалить
-            </button>
-            <button className="btn btn-success">
+              <ArrowReturnLeft className='ms-2' />
+              </Button>
+
+            <Button variant='outline-success' className='mx-2'>
+              <CheckLg className='me-2'/>
               Завершить
-            </button>
+            </Button>
+          </td>
+        </tr>
+        <tr className="table-light">
+          <td>1</td>
+          <td className="task">
+            Купить игру для Кота
+          </td>
+          <td>В процессе</td>
+          <td>
+            <Button variant='outline-danger' className='mx-2'>
+              Удалить
+              <ArrowReturnLeft className='ms-2' />
+              </Button>
+
+            <Button variant='outline-success' className='mx-2'>
+              <CheckLg className='me-2'/>
+              Завершить
+            </Button>
           </td>
         </tr>
 
@@ -42,9 +67,11 @@ const MyTable = (props: Props) => {
           <td>
             <button className="btn btn-danger">
               Удалить
+              <ArrowReturnLeft className='ms-2' />
             </button>
-            <button className="btn btn-success">
+            <button className="btn btn-success ms-1">
               Завершить
+              <CheckLg className='ms-2'/>
             </button>
           </td>
         </tr>
@@ -52,15 +79,17 @@ const MyTable = (props: Props) => {
         <tr className="table-secondary">
           <td>2</td>
           <td className="text-decoration">
-            Помыть кота
+            Сполоснуть кота
           </td>
           <td>Выполнена</td>
           <td>
-            <button className="btn btn-outline-danger">
+          <button className="btn btn-danger">
               Удалить
+              <ArrowReturnLeft className='ms-2' />
             </button>
-            <button className="btn btn-outline-primary">
+            <button className="btn btn-success ms-1">
               Завершить
+              <CheckLg className='ms-2'/>
             </button>
           </td>
         </tr>
@@ -68,23 +97,25 @@ const MyTable = (props: Props) => {
         <tr className="table-secondary">
           <td>2</td>
           <td className="text-decoration">
-            Помыть кота
+            Высушить кота
           </td>
           <td>Выполнена</td>
           <td>
-            <button className="btn btn-outline-warning btn-sm">
+          <button className="btn btn-outline-danger mx-2">
               Удалить
+              <ArrowReturnLeft className='ms-2' />
             </button>
-            <button className="btn btn-outline-primary btn-outline-dark btn-sm">
+            <button className="btn btn-outline-success mx-2">
               Завершить
+              <CheckLg className='ms-2'/>
             </button>
           </td>
         </tr>
 
 
       </tbody>
-    </table>
-  </div>
+    </Table>
   )
 }
 
+export default MyTable;

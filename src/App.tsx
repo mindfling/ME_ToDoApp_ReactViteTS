@@ -2,16 +2,18 @@ import { Alert, Breadcrumb, Button, CloseButton, Table } from 'react-bootstrap';
 import { Title } from './Components/Title';
 import ExampleModal from './Components/ExampleModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form } from './Components/Form';
+import MyTable from './Components/MyTable';
 
 function App() {
 
 
   return (
     <div className='App app-container'>
+      <ExampleModal /> {/* modal shows at start */}
 
-      <ExampleModal />
       <Title title='ToDoWka Application' />
-      <p>test buttons</p>
+
       <Button variant="primary">Primary</Button>{' '}
       <Button variant="secondary">Secondary</Button>{' '}
       <Button variant="success">Success</Button>{' '}
@@ -20,10 +22,15 @@ function App() {
       <Button variant="info">Info</Button>{' '}
       <Button variant="light">Light</Button>{' '}
       <Button variant="dark">Dark</Button>
-      <Button variant="link">Link</Button>
-      <CloseButton className='mb-5' />
+      <Button variant="link" className='mb-5'>Link</Button>
 
-      <Table variant='dark' hover>
+      <Alert>Add some task ToDo</Alert>
+      <Form /> {/* form add task */}
+
+      <MyTable></MyTable>
+
+{/*
+      <MyTable variant='dark' hover>
         <thead>
           <tr>
             <th>#</th>
@@ -56,7 +63,7 @@ function App() {
           </tr>
         </tbody>
       </Table>
-
+*/}
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import React from 'react'
+// import React from 'react'
 
-type Props = {}
+// type Props = {}
 
 export const Form = () => {
   return (
@@ -9,11 +9,11 @@ export const Form = () => {
           <input type="text" className="form-control" placeholder="ввести задачу" />
         </label>
 
-        <button type="submit" className="btn btn-primary me-3">
+        <button type="submit" title='submit' className="btn btn-primary me-3">
           Сохранить
         </button>
 
-        <button type="reset" className="btn btn-warning">
+        <button type="reset" title='reset' className="btn btn-warning">
           Очистить
         </button>
       </form>
