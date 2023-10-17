@@ -3,6 +3,8 @@
 
 body {
   margin: 2px;
+  background: rgb(229, 72, 220);
+  background: radial-gradient(circle, rgba(229, 72, 220, 1) 0%, rgba(148, 233, 151, 1) 100%);
 }
 
 

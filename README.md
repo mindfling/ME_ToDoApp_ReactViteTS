@@ -8,7 +8,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 ## Working commands
 
-`git init` =)
+`git init`
 
 
 on cmd!
@@ -19,6 +19,7 @@ on cmd!
 on gitBash
 
 `npm i`
+
 `npm run dev`
 
 `npm r eslint`
@@ -28,3 +29,9 @@ install css packs
 `npm i normalize.css`
 
 `npm i react-bootstrap bootstrap`
+
+
+```
+npm install bootstrap
+npm install react-bootstrap
+```
