@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Button } from './Components/Button';
 import { Title } from './Components/Title';
+import { Form } from './Components/Form';
+import Table from './Components/Table';
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -13,8 +15,10 @@ function App() {
       {/* <Title></Title> */}
 
       {/* <Form></Form> */}
+      <Form />
 
       {/* <Table></Table> */}
+      <Table />
       <Button className='btn btn-primary btn-lg' type='button'>Push button</Button>
     </>
   )
