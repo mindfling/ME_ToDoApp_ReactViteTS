@@ -1,0 +1,12 @@
+@import 'normalize.css';
+@import 'bootstrap';
+
+body {
+  margin: 2px;
+}
+
+
+::selection {
+  background-color: #8c87a4;
+  color: #000;
+}
