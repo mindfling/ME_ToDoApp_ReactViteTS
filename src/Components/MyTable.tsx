@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {}
 
-const Table = (props: Props) => {
+const MyTable = (props: Props) => {
   return (
     <div className="table-wrapper">
     <table className="table table-hover table-bordered">
@@ -88,5 +88,3 @@ const Table = (props: Props) => {
   )
 }
 
-
-export default Table;
