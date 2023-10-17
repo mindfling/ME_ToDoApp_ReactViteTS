@@ -22,3 +22,9 @@ on gitBash
 `npm run dev`
 
 `npm r eslint`
+
+install css packs
+
+`npm i normalize.css`
+
+`npm i react-bootstrap bootstrap`
