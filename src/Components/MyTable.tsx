@@ -8,7 +8,7 @@ import ButtonDone from './ButtonDone';
 
 // type Props = {}
 
-import { ITask, testData,  } from '../Data/TestData';
+import { ITask, testData, } from '../Data/TestData';
 
 const MyTable = () => {
 
@@ -30,23 +30,26 @@ const MyTable = () => {
       </thead>
       <tbody>
 
-      
+        {data.map((task: ITask, i: number) => (
+          <tr className={'table-' + task.priority}>
+            <th>{i + 1}</th> {/* id */}
+            <td className="task">{task.description}</td> {/* task description */}
+            <td>{(task.status === 'wait') ? 'Ожидает' : 'Готово'}</td> {/* status текст В процессе*/}
+            <td> {/* action */}
+              <Button variant='danger' className='mx-1'>
+                Удалить
+                <X className='ms-1' />
+              </Button>
+              <Button variant='success' className='mx-1'>
+                Завершить
+                <CheckLg className='ms-1' />
+              </Button>
+            </td>
+          </tr>
+        ))}
 
-        <tr className="table-light">
-          <td>1</td> {/* id */}
-          <td className="task">Купить слона</td> {/* task */}
-          <td>В процессе</td> {/* status */}
-          <td> {/* action */}
-            <Button variant='outline-danger' className='mx-2'>
-              Удалить
-              <X className='ms-2' />
-            </Button>
-            <Button variant='outline-success' className='mx-2' disabled >
-              Завершить
-              <ArrowReturnLeft className='mx-2' />
-            </Button>
-          </td>
-        </tr>
+        <p>test</p>
+
 
         <tr className="table-light">
           <td>1</td>
@@ -104,8 +107,8 @@ const MyTable = () => {
           </td>
           <td>Выполнена</td>
           <td>
-            <ButtonRemove variant='outline-danger'/>
-            <ButtonDone variant='outline-success'/>
+            <ButtonRemove variant='outline-danger' />
+            <ButtonDone variant='outline-success' />
           </td>
         </tr>
       </tbody>
