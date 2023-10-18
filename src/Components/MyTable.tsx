@@ -6,6 +6,8 @@ import { ArrowReturnLeft, CheckLg, X } from 'react-bootstrap-icons';
 import ButtonRemove from './ButtonRemove';
 import ButtonDone from './ButtonDone';
 
+import { toCapitalizeString } from '../Data/util';
+
 // type Props = {}
 
 import { ITask, testData, } from '../Data/TestData';
@@ -31,86 +33,17 @@ const MyTable = () => {
       <tbody>
 
         {data.map((task: ITask, i: number) => (
-          <tr className={'table-' + task.priority}>
-            <th>{i + 1}</th> {/* id */}
-            <td className="task">{task.description}</td> {/* task description */}
+          <tr className={'table-' + task.priority}> {/* row */}
+            <th>{i + 1}</th> {/* cell number id */}
+            <td className={'task' + (task.status === 'done' ? ' text-decoration-line-through' : '')} title={task.status === 'done' ? 'Уже сделано' : (task.priority === 'danger' ? 'Поторопитесь' : (task.priority === 'warning' ? 'Важно' : 'Как обычно')) + ' ' + task.description.toLowerCase()}>{toCapitalizeString(task.description)}</td> {/* task description */}
             <td>{(task.status === 'wait') ? 'Ожидает' : 'Готово'}</td> {/* status текст В процессе*/}
             <td> {/* action */}
-              <Button variant='danger' className='mx-1'>
-                Удалить
-                <X className='ms-1' />
-              </Button>
-              <Button variant='success' className='mx-1'>
-                Завершить
-                <CheckLg className='ms-1' />
-              </Button>
+              <ButtonRemove />
+              <ButtonDone />
             </td>
           </tr>
         ))}
 
-        <p>test</p>
-
-
-        <tr className="table-light">
-          <td>1</td>
-          <td className="task">
-            Купить игру для Кота
-          </td>
-          <td>В процессе</td>
-          <td>
-            <Button variant='outline-danger' className='mx-2' disabled >
-              Удалить
-              <ArrowReturnLeft className='ms-2' />
-            </Button>
-
-            <Button variant='outline-success' className='mx-2'>
-              <CheckLg className='me-2' />
-              Завершить
-            </Button>
-          </td>
-        </tr>
-
-        <tr className="table-success">
-          <td>2</td>
-          <td className="text-decoration-line-through">
-            Помыть кота
-          </td>
-          <td>Выполнена</td>
-          <td>
-            <button className="btn btn-danger disabled ">
-              Удалить
-              <X className='ms-2' />
-            </button>
-            <button className="btn btn-success ms-1">
-              Завершить
-              <CheckLg className='ms-2' />
-            </button>
-          </td>
-        </tr>
-
-        <tr className="table-secondary">
-          <td>2</td>
-          <td className="text-decoration">
-            Сполоснуть кота
-          </td>
-          <td>Выполнена</td>
-          <td>
-            <ButtonRemove />
-            <ButtonDone />
-          </td>
-        </tr>
-
-        <tr className="table-warning">
-          <td>2</td>
-          <td className="text-decoration">
-            Высушить кота
-          </td>
-          <td>Выполнена</td>
-          <td>
-            <ButtonRemove variant='outline-danger' />
-            <ButtonDone variant='outline-success' />
-          </td>
-        </tr>
       </tbody>
     </Table>
   )
