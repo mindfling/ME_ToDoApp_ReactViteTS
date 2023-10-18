@@ -8,54 +8,17 @@ import ButtonDone from './ButtonDone';
 
 // type Props = {}
 
-export type Task = {
-  id: string;
-  description: string;
-  priority: 'light' | 'warning' | 'danger';
-  status: 'wait' | 'done';
-};
+import { ITask, testData,  } from '../Data/TestData';
 
 const MyTable = () => {
 
-  // todo test taskList data
-  const data: Array<Task> = [
-    { 
-      'id': '1fcneui5nc_18ae8e44bb2',
-      'description': 'Помыть кота',
-      'priority': 'light',
-      'status': 'wait',
-    },
-    { 
-      'id': '5p9etkr5pg_18b42fbeb51',
-      'description': 'Обычно помыть кота',
-      'priority': 'light',
-      'status': 'wait',
-    },
-    { 
-      'id': 'nm8p43avpm_18b42fc1ef8',
-      'description': 'Важно помыть кота',
-      'priority': 'warning',
-      'status': 'wait',
-    },
-    { 
-      'id': '8snk7aeotl_18b42fc7888',
-      'description': 'Срочно помыть кота',
-      'priority': 'danger',
-      'status': 'wait',
-    },
-    { 
-      'id': 'skh1dk9hoh_18b431cb383',
-      'description': 'Уже помыл кота как обычно',
-      'priority': 'light',
-      'status': 'done',
-    },
-  ]
+  const data: Array<ITask> = testData;
 
   console.log(`data`, data);
 
   return (
     <Table className="table" bordered hover>
-      <caption>List of Список дел</caption>
+      <caption>Список <code>List</code> дел пользователя <code>User</code></caption>
       <thead>
         <tr>
           <th>№</th> {/* id: string */}
@@ -65,8 +28,10 @@ const MyTable = () => {
           {/* color priority: 'light' | 'warning' | 'danger' */}
         </tr>
       </thead>
-
       <tbody>
+
+      
+
         <tr className="table-light">
           <td>1</td> {/* id */}
           <td className="task">Купить слона</td> {/* task */}
@@ -109,7 +74,7 @@ const MyTable = () => {
           </td>
           <td>Выполнена</td>
           <td>
-            <button className="btn btn-danger">
+            <button className="btn btn-danger disabled ">
               Удалить
               <X className='ms-2' />
             </button>
@@ -143,8 +108,6 @@ const MyTable = () => {
             <ButtonDone variant='outline-success'/>
           </td>
         </tr>
-
-
       </tbody>
     </Table>
   )

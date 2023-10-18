@@ -1,13 +1,13 @@
 import { Button } from 'react-bootstrap';
 import { X } from 'react-bootstrap-icons';
 
-type Props = {
+interface ButtonProps {
   variant?: string;
   className?: string;
   disable?: boolean;
 }
 
-const ButtonRemove = (props: Props) => {
+const ButtonRemove = (props: ButtonProps) => {
   return (
     <Button
       title='удалить задачу из списка'

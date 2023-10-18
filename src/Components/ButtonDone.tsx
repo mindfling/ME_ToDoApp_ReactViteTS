@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { CheckLg } from 'react-bootstrap-icons';
 
-type Props = {
+interface Props {
   variant?: string;
   className?: string;
   disable?: boolean;
