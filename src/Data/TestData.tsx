@@ -14,7 +14,7 @@ export interface ITask {
 export const testData: Array<ITask> = [
   { 
     'id': getRandomId(),
-    'description': 'Помыть кота',
+    'description': 'Купить кота',
     'priority': 'light',
     'status': 'wait',
   },
@@ -25,20 +25,26 @@ export const testData: Array<ITask> = [
     'status': 'wait',
   },
   { 
-    'id': 'nm8p43avpm_18b42fc1ef8',
-    'description': 'Важно помыть кота',
+    'id': getRandomId(),
+    'description': 'Важно Сполоснуть кота',
     'priority': 'warning',
     'status': 'wait',
   },
   { 
-    'id': '8snk7aeotl_18b42fc7888',
-    'description': 'Срочно помыть кота',
+    'id': getRandomId(),
+    'description': 'Срочно ВЫСУШИТЬ кота',
     'priority': 'danger',
     'status': 'wait',
   },
   { 
-    'id': 'skh1dk9hoh_18b431cb383',
-    'description': 'Уже помыл кота как обычно',
+    'id': getRandomId(),
+    'description': 'СРОЧНО покормить кота',
+    'priority': 'danger',
+    'status': 'wait',
+  },
+  { 
+    'id': getRandomId(),
+    'description': 'УЖЕ помыл кота как обычно',
     'priority': 'light',
     'status': 'done',
   },
