@@ -139,7 +139,7 @@ const MyTable = () => {
           </td>
           <td>Выполнена</td>
           <td>
-            <ButtonRemove variant='outline-primary'/>
+            <ButtonRemove variant='outline-danger'/>
             <ButtonDone variant='outline-success'/>
           </td>
         </tr>

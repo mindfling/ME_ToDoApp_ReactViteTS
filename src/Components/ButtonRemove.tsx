@@ -10,10 +10,11 @@ type Props = {
 const ButtonRemove = (props: Props) => {
   return (
     <Button
+      title='удалить задачу из списка'
       variant={props.variant ? props.variant : 'danger'}
       className={props.className ? props.className : 'mx-2'}
     >
-      Delete task
+      Удалить
       <X className='ms-1'/>
     </Button>
   )

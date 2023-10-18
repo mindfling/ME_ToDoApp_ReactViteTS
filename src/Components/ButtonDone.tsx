@@ -10,10 +10,11 @@ type Props = {
 const ButtonDelete = (props: Props) => {
   return (
     <Button
+      title='завершить выполнение задачи'
       variant={props.variant ? props.variant : 'success'}
       className={props.className ? props.className : 'mx-2'}
     >
-      It done
+      Завершить
       <CheckLg className='ms-1'/>
     </Button>
   )
