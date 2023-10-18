@@ -1,4 +1,4 @@
-import { Button, Container } from 'react-bootstrap';
+// import { Button, Container } from 'react-bootstrap';
 import { Title } from './Components/Title';
 import ExampleModal from './Components/ExampleModal';
 import { Form } from './Components/Form';
@@ -12,8 +12,9 @@ function App() {
     <div className='App app-container  d-flex align-items-center justify-content-center flex-column'>
       <ExampleModal /> {/* modal shows at start */}
 
-      <Title title='ToDoWka Application' />
-
+      <Title text='ToDoWka Application' />
+{/* 
+      <p>bootstrap buttons test</p>
       <Container>
         <Button variant="primary">Primary</Button>{' '}
         <Button variant="secondary">Secondary</Button>{' '}
@@ -25,6 +26,7 @@ function App() {
         <Button variant="dark">Dark</Button>
         <Button variant="link" className='mb-5'>Link</Button>
       </Container>
+*/}
 
       <Form />
 

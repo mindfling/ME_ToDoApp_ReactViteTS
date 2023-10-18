@@ -1,11 +1,11 @@
-import React from 'react'
+// * simple Title H1 Заголовок
 
 type Props = {
-  title: string;
+  text: string;
 }
 
-export const Title = ({title}: Props) => {
+export const Title = ({text}: Props) => {
   return (
-    <h1>{title}</h1>
+    <h1>{text}</h1>
   )
 };
