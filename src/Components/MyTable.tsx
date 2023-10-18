@@ -3,6 +3,8 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
 import { ArrowReturnLeft, CheckLg, X } from 'react-bootstrap-icons';
+import ButtonRemove from './ButtonRemove';
+import ButtonDone from './ButtonDone';
 
 // type Props = {}
 
@@ -125,14 +127,8 @@ const MyTable = () => {
           </td>
           <td>Выполнена</td>
           <td>
-            <button className="btn btn-danger">
-              Удалить
-              <ArrowReturnLeft className='ms-2' />
-            </button>
-            <button className="btn btn-success ms-1">
-              Завершить
-              <CheckLg className='ms-2' />
-            </button>
+            <ButtonRemove />
+            <ButtonDone />
           </td>
         </tr>
 
@@ -143,14 +139,8 @@ const MyTable = () => {
           </td>
           <td>Выполнена</td>
           <td>
-            <button className="btn btn-outline-danger mx-2">
-              Удалить
-              <ArrowReturnLeft className='ms-2' />
-            </button>
-            <button className="btn btn-outline-success mx-2">
-              Завершить
-              <CheckLg className='ms-2' />
-            </button>
+            <ButtonRemove variant='outline-primary'/>
+            <ButtonDone variant='outline-success'/>
           </td>
         </tr>
 
