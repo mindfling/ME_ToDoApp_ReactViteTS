@@ -1,3 +1,5 @@
+// * Компонент Кнопка удаления задания
+
 import { Button } from 'react-bootstrap';
 import { CheckLg } from 'react-bootstrap-icons';
 
@@ -5,14 +7,15 @@ interface Props {
   variant?: string;
   className?: string;
   disable?: boolean;
+  title?: string;
 }
 
-const ButtonDelete = (props: Props) => {
+const ButtonDone = (props: Props) => {
   return (
     <Button
-      title='завершить выполнение задачи'
+      title='Завершить выполнение задачи'
       variant={props.variant ? props.variant : 'success'}
-      className={props.className ? props.className : 'mx-2'}
+      className={props.className ? props.className : 'mx-1'}
     >
       Завершить
       <CheckLg className='ms-1'/>
@@ -20,4 +23,4 @@ const ButtonDelete = (props: Props) => {
   )
 }
 
-export default ButtonDelete;
+export default ButtonDone;
