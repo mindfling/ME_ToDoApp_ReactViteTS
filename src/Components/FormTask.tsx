@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const FormTask = ({store}: Props) => {
-  console.log('store in FormTask: ', store);
   
   const [value, setValue] = useState(''); // input value
   
@@ -20,14 +19,10 @@ export const FormTask = ({store}: Props) => {
     e.preventDefault();
     console.log('submited and save to storage');
     const description: string = value.replace(/(\s\s*)/g, ' ').toLowerCase().trim();
-    // console.log('after submit value: \"', value.replace(/(\s\s*)/g, ' ').toLowerCase(), '\"'); // удаляем лишние пробелы
-    console.log('description: ', description);
     
     const task: ITask = new Task(description, 'light');
-    console.log('task in FormTask: ', task);
     
     store.addTask(task);
-    console.log('add new task to store: ', store);
   }
   
   // * simple button click
