@@ -1,15 +1,11 @@
 // * обработчик хранилища данных
 
+import { ITask } from "./Task";
+
 type TStorage = string | null; //?
 
-export interface ITask {
-  id: string;
-  description: string;
-  priority: 'light' | 'warning' | 'danger';
-  status: 'wait' | 'done';
-};
 
-
+// * Класс Хранилище
 export class Store {
   private _taskList: Array<ITask>;
   private _storageKey: string;
@@ -18,9 +14,7 @@ export class Store {
   public get storageKey(): string {
     return this._storageKey;
   }
-  // public set storageKey(value: string) {
-  //   this._storageKey = value;
-  // }
+
   
   public get taskList(): Array<ITask> {
     return this._taskList;
@@ -46,7 +40,7 @@ export class Store {
     const rawData: TStorage = localStorage.getItem(this._storageKey);
     console.log('getData rawData: ', rawData); // todo debug
     const data: Array<ITask> = (rawData ? JSON.parse(rawData) : []);
-    console.log('get storage data: ', data);
+    console.log('get storage data: ', data); // todo debug
     return data;
   }
   
