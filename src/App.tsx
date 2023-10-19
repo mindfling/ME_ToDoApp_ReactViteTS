@@ -1,7 +1,7 @@
 // import { Button, Container } from 'react-bootstrap';
 import { Title } from './Components/Title';
 import ExampleModal from './Components/ExampleModal';
-import { Form } from './Components/Form';
+import { FormTask } from './Components/FormTask';
 import MyTable from './Components/MyTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,7 +13,7 @@ function App() {
 
       <Title text='ToDoWka Application' />
 
-      <Form />
+      <FormTask />
 
       <MyTable />
     </div>
