@@ -1,8 +1,6 @@
 // import React from 'react'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 
-import { ArrowReturnLeft, CheckLg, X } from 'react-bootstrap-icons';
 import ButtonRemove from './ButtonRemove';
 import ButtonDone from './ButtonDone';
 
@@ -23,22 +21,21 @@ const MyTable = () => {
       <caption>Список <code>List</code> дел пользователя <code>User</code></caption>
       <thead>
         <tr>
-          <th>№</th> {/* id: string */}
-          <th>Задача</th> {/* task: string */}
-          <th>Статус</th> {/* status: 'wait' | 'done' */}
-          <th>Действия</th> {/* action: remove or done */}
-          {/* color priority: 'light' | 'warning' | 'danger' */}
+          <th>№</th>
+          <th>Задача</th>
+          <th>Статус</th>
+          <th>Действия</th>
         </tr>
       </thead>
       <tbody>
 
         {data.map((task: ITask, i: number) => (
-          <tr className={'table-' + task.priority} key={'table-row-0' + (i + 1)} id={task.id}> {/* row */}
-            <th>{`0${1 + i}`}</th> {/* cell number id */}
-            <td className={'task' + (task.status === 'done' ? ' text-decoration-line-through' : '')} title={task.status === 'done' ? 'Уже сделано' : (task.priority === 'danger' ? 'Поторопитесь' : (task.priority === 'warning' ? 'Важно' : 'Как обычно')) + ' ' + task.description.toLowerCase()}>{toCapitalizeString(task.description)}</td> {/* task description */}
-            <td>{(task.status === 'wait') ? 'Ожидает' : 'Готово'}</td> {/* status текст В процессе*/}
-            <td> {/* action */}
-              <ButtonRemove />
+          <tr className={'table-row table-' + task.priority} key={'table-row-0' + (i + 1)} id={task.id}>
+            <th>{`0${1 + i}`}</th>
+            <td className={'task' + (task.status === 'done' ? ' text-decoration-line-through' : '')} title={task.status === 'done' ? 'Уже сделано' : (task.priority === 'danger' ? 'Поторопитесь' : (task.priority === 'warning' ? 'Важно' : 'Как обычно')) + ' ' + task.description.toLowerCase()}>{toCapitalizeString(task.description)}</td>
+            <td>{(task.status === 'wait') ? 'Ожидает' : 'Готово'}</td>
+            <td>
+              <ButtonRemove/>
               <ButtonDone />
             </td>
           </tr>
