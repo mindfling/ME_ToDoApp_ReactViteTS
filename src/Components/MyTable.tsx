@@ -6,7 +6,7 @@ import { ArrowReturnLeft, CheckLg, X } from 'react-bootstrap-icons';
 import ButtonRemove from './ButtonRemove';
 import ButtonDone from './ButtonDone';
 
-import { toCapitalizeString } from '../Data/util';
+import { toCapitalizeString } from '../modules/util'; 
 
 // type Props = {}
 
