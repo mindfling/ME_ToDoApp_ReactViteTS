@@ -16,21 +16,13 @@ export interface ITask {
 
 // * Класс Задача
 export class Task implements ITask {
-  private _id: string;
+  public id: string;
   public description: string;
   public priority: TPriority;
   public status: TStatus;
   
-  
-  public get id(): string {
-    return this._id;
-  }
-  public set id(value: string) {
-    this._id = value;
-  }
-  
   constructor(description: string, priority: TPriority) {
-    this._id = getRandomId();
+    this.id = getRandomId();
     this.description = description;
     this.priority = priority;
     this.status = "wait";
