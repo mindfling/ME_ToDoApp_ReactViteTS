@@ -8,11 +8,12 @@ interface Props {
   className?: string;
   disable?: boolean;
   title?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ButtonDone = (props: Props) => {
   return (
-    <Button
+    <Button onClick={props.onClick}
       title='Завершить выполнение задачи'
       variant={props.variant ? props.variant : 'success'}
       className={props.className ? props.className : 'mx-1'}

@@ -12,10 +12,6 @@ interface ButtonProps {
 }
 
 const ButtonRemove = (props: ButtonProps) => {
-  
-
-  
-  
   return (
     <Button onClick={props.onClick}
       title='Удалить задачу из списка'
