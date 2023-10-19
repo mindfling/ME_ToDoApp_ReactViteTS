@@ -17,8 +17,8 @@ interface Props {
 const MyTable = ({ store }: Props) => {
   console.log('store in MyTable: ', store);
 
-  const data: Array<ITask> = testData;
-  console.log(`data`, data);
+  const data: Array<ITask> = store.taskList;;
+  console.log(`data is store in MyTable`, data);
 
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     console.warn('REMOVE');
