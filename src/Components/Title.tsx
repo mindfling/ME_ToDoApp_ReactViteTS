@@ -1,10 +1,10 @@
 // * simple Title H1 Заголовок
 
-type Props = {
+interface TitleProps {
   text: string;
 }
 
-export const Title = ({text}: Props) => {
+export const Title = ({text}: TitleProps) => {
   return (
     <h1>{text}</h1>
   )
