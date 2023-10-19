@@ -6,7 +6,7 @@ import { ArrowReturnLeft, CheckLg, X } from 'react-bootstrap-icons';
 import ButtonRemove from './ButtonRemove';
 import ButtonDone from './ButtonDone';
 
-import { toCapitalizeString } from '../modules/util'; 
+import { toCapitalizeString } from '../modules/util';
 
 // type Props = {}
 
@@ -33,8 +33,8 @@ const MyTable = () => {
       <tbody>
 
         {data.map((task: ITask, i: number) => (
-          <tr className={'table-' + task.priority}> {/* row */}
-            <th>{i + 1}</th> {/* cell number id */}
+          <tr className={'table-' + task.priority} key={'table-row-0' + (i + 1)} id={task.id}> {/* row */}
+            <th>{`0${1 + i}`}</th> {/* cell number id */}
             <td className={'task' + (task.status === 'done' ? ' text-decoration-line-through' : '')} title={task.status === 'done' ? 'Уже сделано' : (task.priority === 'danger' ? 'Поторопитесь' : (task.priority === 'warning' ? 'Важно' : 'Как обычно')) + ' ' + task.description.toLowerCase()}>{toCapitalizeString(task.description)}</td> {/* task description */}
             <td>{(task.status === 'wait') ? 'Ожидает' : 'Готово'}</td> {/* status текст В процессе*/}
             <td> {/* action */}
