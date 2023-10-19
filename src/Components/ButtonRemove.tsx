@@ -13,13 +13,11 @@ interface ButtonProps {
 
 const ButtonRemove = (props: ButtonProps) => {
   
-  const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(((event.target as HTMLButtonElement).closest('.table-row') as HTMLTableRowElement).id); //? какой здесь тип ?
-  } 
+
   
   
   return (
-    <Button onClick={handleRemoveClick}
+    <Button onClick={props.onClick}
       title='Удалить задачу из списка'
       variant={props.variant ? props.variant : 'danger'}
       className={props.className ? props.className : 'mx-1'}
