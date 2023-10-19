@@ -1,6 +1,9 @@
 // работа local storage
-import { ITask } from "../Data/TestData"; // тип Задача task
+// import { ITask } from "../Data/TestData"; // тип Задача task
+import { ITask } from "./Store";
 
+
+// todo ОФОРМИТЬ В ВИДЕ ОТДЕЛЬНОГО КЛАСССА!!!
 
 // получаем ВЕСЬ список дел из хранилища
 export const getTaskData = (storageKey: string): ITask[] => {
@@ -32,4 +35,17 @@ export const removeTaskData = (storageKey: string, id: string) => {
   const newData: ITask[] = data.filter((task: ITask) => task.id !== id)
   setTaskData(storageKey, newData); // перезаписываем
 }
+
+
+// todo 
+export const finishTaskData = (storageKey: string, idForFinish: string) => {
+  const data: ITask[] = getTaskData(storageKey);
+  const newData: ITask[] = data.map((value: ITask) => {
+    if (value.id === idForFinish) {
+      value.status = (value.status === 'wait') ? 'done' : value.status; // меняем статус на завершить
+    }
+    return value;
+  });
+  setTaskData(storageKey, newData); // перезаписываем обновленные данные
+};
 

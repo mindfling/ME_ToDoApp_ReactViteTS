@@ -5,17 +5,26 @@ import { FormTask } from './Components/FormTask';
 import MyTable from './Components/MyTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { TITLE, STORAGE_KEY } from './Data/consts';
+import { Store } from './modules/Store';
+console.log('TITLE: ', TITLE);
+console.log('STORAGE_KEY: ', STORAGE_KEY);
+
+
 function App() {
+  
+  const store: Store = new Store(STORAGE_KEY);
+  console.log('store: ', store);
 
   return (
     <div className='App app-container  d-flex align-items-center justify-content-center flex-column'>
-      <ExampleModal /> {/* modal shows at start */}
+      <ExampleModal />
 
-      <Title text='ToDoWka Application' />
+      <Title text={TITLE} />
 
-      <FormTask />
+      <FormTask store={store} />
 
-      <MyTable />
+      <MyTable store={store} />
     </div>
   )
 }
