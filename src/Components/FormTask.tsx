@@ -15,13 +15,12 @@ export const FormTask = ({store}: Props) => {
   const [value, setValue] = useState(''); // input value
   
   // * submit
+  // todo validation 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('submited and save to storage');
     const description: string = value.replace(/(\s\s*)/g, ' ').toLowerCase().trim();
-    
     const task: ITask = new Task(description, 'light');
-    
     store.addTask(task);
   }
   
@@ -44,7 +43,7 @@ export const FormTask = ({store}: Props) => {
         title='Просто введите краткое описание задачи'
         name='task'
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)} // todo in handler
       />
       <Button className='mx-2 ms-4' variant="primary" type="submit" onClick={handleButtonClick}>Submit</Button>
       <Button variant="warning" type="reset" onClick={handleClickReset}>Reset</Button>

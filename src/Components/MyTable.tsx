@@ -15,10 +15,7 @@ interface TableProps {
 }
 
 export const MyTable = (props: TableProps) => {
-  
-  const [store, setStore] = useState(props.store);
-  const [data, setData] = useState(store.taskList);
-  
+
 
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const delTaskID: string = ((event.target as HTMLButtonElement).closest('.table-row') as HTMLTableRowElement).id;
@@ -43,11 +40,12 @@ export const MyTable = (props: TableProps) => {
       <tbody>
         {data.map((task: ITask, i: number) => {
           console.log('in map task: ', task.id);
-          
+
           return (
-            <tr className={'table-row table-' + task.priority} key={'table-row-0' + (i + 1)} id={task.id}>
+            <tr className={'table-row table-' + task.priority} key={task.id} id={task.id}>
               <th>{`0${1 + i}`}</th>
-              <td className={'task' + (task.status === 'done' ? ' text-decoration-line-through' : '')} title={task.status === 'done' ? 'Уже сделано' : (task.priority === 'danger' ? 'Поторопитесь' : (task.priority === 'warning' ? 'Важно' : 'Как обычно')) + ' ' + task.description.toLowerCase()}>{toCapitalizeString(task.description)}</td>
+              <td
+                className={'task' + (task.status === 'done' ? ' text-decoration-line-through' : '')} title={task.status === 'done' ? 'Уже сделано' : (task.priority === 'danger' ? 'Поторопитесь' : (task.priority === 'warning' ? 'Важно' : 'Как обычно')) + ' ' + task.description.toLowerCase()}>{toCapitalizeString(task.description)}</td>
               <td>{(task.status === 'wait') ? 'Ожидает' : 'Готово'}</td>
               <td>
                 <ButtonRemove onClick={handleRemoveClick} />

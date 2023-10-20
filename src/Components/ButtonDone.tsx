@@ -3,7 +3,7 @@
 import { Button } from 'react-bootstrap';
 import { CheckLg } from 'react-bootstrap-icons';
 
-interface Props {
+interface ButtonDonePros {
   variant?: string;
   className?: string;
   disable?: boolean;
@@ -11,7 +11,7 @@ interface Props {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const ButtonDone = (props: Props) => {
+const ButtonDone = (props: ButtonDonePros) => {
   return (
     <Button onClick={props.onClick}
       title='Завершить выполнение задачи'

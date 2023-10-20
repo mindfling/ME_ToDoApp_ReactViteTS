@@ -5,7 +5,7 @@ import { MyTable } from './Components/MyTable';
 import { TITLE, STORAGE_KEY } from './Data/consts';
 import { Store } from './modules/Store';
 import { useState } from 'react';
-import { useToggle } from './modules/hooks';
+import { useToggle } from './modules/Hooks/useToggle';
 import { Button } from 'react-bootstrap';
 import { ModalForm } from './Components/ModalForm';
 
@@ -22,12 +22,8 @@ function App() {
       <ModalForm isVisible={isVisible} />
 
       <Title text={TITLE} />
+      
       <FormTask store={store} />
-
-      <Button onClick={(e) => {
-        console.log(e.target);
-        setVisible((isVisible: boolean) => !isVisible);
-      }} type='button' className='my-3'>toggle modal</Button>
 
       <MyTable store={store} />
     </div>

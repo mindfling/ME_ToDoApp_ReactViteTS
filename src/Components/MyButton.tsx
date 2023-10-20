@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+// todo rename 
 type Props = {
   type: 'button' | 'submit' | 'reset' | undefined;
   className: string;
