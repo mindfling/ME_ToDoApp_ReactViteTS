@@ -14,42 +14,19 @@ interface TableProps {
   store: Store;
 }
 
-const MyTable = (props: TableProps) => {
+export const MyTable = (props: TableProps) => {
   
   const [store, setStore] = useState(props.store);
-  // const data: Array<ITask> = store.taskList;
   const [data, setData] = useState(store.taskList);
   
 
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.warn('REMOVE');
-    console.log(event.target);
-    console.log((event.target as HTMLButtonElement).closest('.table-row'));
     const delTaskID: string = ((event.target as HTMLButtonElement).closest('.table-row') as HTMLTableRowElement).id;
-    console.log('Удалить задание', delTaskID); //? какой здесь тип ?
     const delTaskRow: HTMLElement | null = document.getElementById(delTaskID); //? какой здесь тип ?
-
-    // if (delTaskRow instanceof HTMLTableRowElement) {
-    //   delTaskRow.remove();
-    // }
-    store.removeTask(delTaskID);
   }
 
   const handleDoneClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    // ? ПОЧЕМУ НЕ РАБОТАЕТ ?
-    console.warn('DONE');
-    console.log(event.target);
-    console.log((event.target as HTMLButtonElement).closest('.table-row'));
     const doneTaskID: string = ((event.target as HTMLButtonElement).closest('.table-row') as HTMLTableRowElement).id;
-    console.log('Выполнить задание', doneTaskID); //? какой здесь тип ?
-    // const doneTaskRow: HTMLElement | null = document.getElementById(doneTaskID); //? какой здесь тип ?
-    // store.finishTask(doneTaskID);
-    // setData((data) => {
-    //   console.log('set store finish');
-    //   store.finishTask(doneTaskID);
-    //   return store.taskList;
-    // });
-    
   }
 
   return (
@@ -84,5 +61,3 @@ const MyTable = (props: TableProps) => {
     </Table>
   )
 }
-
-export default MyTable;
