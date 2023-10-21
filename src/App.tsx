@@ -20,9 +20,13 @@ export const App = () => {
     cyrName: '',
     nickName: '',
   });
-  const [data, setData] = useLocalStorage([], `${STORAGE_KEY}_${user.nickName}`);
+  const storageKey: string = `${user.nickName}`;
+  console.log('app storageKey: ', storageKey);
+  const [data, setData] = useLocalStorage([], storageKey);
+  console.log('app data: ', data);
 
 
+  // удаление по кнопке id
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
     setData((data) => {
       const newArray: Array<ITask> = data.filter((task) => task.id !== id);
@@ -30,6 +34,7 @@ export const App = () => {
     });
   }
 
+  // завершение задачи по id
   const handleDoneClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
     setData((data) => {
       const newArray = data.map((task) => {
