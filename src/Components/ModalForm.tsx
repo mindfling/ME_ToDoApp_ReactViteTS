@@ -5,26 +5,26 @@ import Modal from 'react-bootstrap/Modal';
 import { trans } from '../modules/util';
 
 
-interface ModalProps {
-  isVisible?: boolean;  
-  onHide: () => void;
-}
-
 interface User {
   cyrName: string; // имя на кириллице
   nickName: string; // ник пользователя на латинице
 }
 
-export function ModalForm( {onHide, isVisible}: ModalProps ) {
-  const [user, setUser] = useState({
-    cyrName: '',
-    nickName: '',
-  });
+interface ModalProps {
+  isVisible?: boolean;  
+  onHide: () => void;
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
+}
+
+
+export function ModalForm( {user, setUser, onHide, isVisible}: ModalProps ) {
+
   const [btnDisable, setDisable] = useState(true);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();    
-    alert(`Приветствуем тебя, ${user.cyrName} ${user.nickName}`);
+    alert(`Приветствуем тебя, ${user.cyrName} ака ${user.nickName}`);
     onHide();
   }
 
