@@ -43,6 +43,7 @@ export const App = () => {
 
   const modalClose = () => {
     setVisible(false);
+    alert(`Приветствуем тебя, ${user.cyrName} ака ${user.nickName}`);
   }
 
   return (

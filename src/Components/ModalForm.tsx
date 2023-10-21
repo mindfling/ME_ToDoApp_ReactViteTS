@@ -11,41 +11,47 @@ interface User {
 }
 
 interface ModalProps {
-  isVisible?: boolean;  
+  isVisible?: boolean;
   onHide: () => void;
   user: User;
   setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 
-export function ModalForm( {user, setUser, onHide, isVisible}: ModalProps ) {
+export function ModalForm({ user, setUser, onHide, isVisible }: ModalProps) {
 
   const [btnDisable, setDisable] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();    
-    alert(`Приветствуем тебя, ${user.cyrName} ака ${user.nickName}`);
+    e.preventDefault();
+
+    setUser((): User => {
+      const cyrName = inputValue.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
+      const nickName = trans(cyrName);
+
+      return { cyrName, nickName };
+    });
+
     onHide();
+    alert(`Modal Приветствуем тебя, ${user.cyrName} ака ${user.nickName}`);
   }
+
 
   const handleInputChange = (e: React.SyntheticEvent) => {
     const value: string = (e.target as HTMLInputElement).value;
-    setUser((): User => {
-      const cyrName = value.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
-      const nickName = trans(cyrName);
-      setDisable(() => {
-        if (nickName.length >= 4) {
-          return false; // активируем кнопку формы если ввел имя
-        }
-        return true;
-      });
-      return { cyrName, nickName};
+    
+    setDisable(() => (value.length < 4));
+    setInputValue(() => {
+      return value; // inputValue.replace(/^\s+|\s+$|\s+(?=\s)/g, "");
     });
+    console.log('input ', inputValue);
   }
 
   return (
     <>
-      <Modal 
+      <Modal
         show={isVisible}
         onHide={onHide}
         backdrop="static"
@@ -63,6 +69,7 @@ export function ModalForm( {user, setUser, onHide, isVisible}: ModalProps ) {
                 type='text'
                 placeholder='Пользователь...'
                 name='user'
+                // value={inputValue}
                 onChange={handleInputChange}
               />
             </Form.Group>
@@ -74,6 +81,7 @@ export function ModalForm( {user, setUser, onHide, isVisible}: ModalProps ) {
             type='submit'
             onClick={handleSubmit}
             disabled={btnDisable}
+            // disabled={false}
           >
             Submit login
           </Button>
