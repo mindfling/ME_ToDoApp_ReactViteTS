@@ -1,27 +1,38 @@
 // import React from 'react'
-import Form from 'react-bootstrap/Form';
-import { Button, FormControl } from "react-bootstrap";
 import React, { useState } from 'react';
-import { Store } from '../modules/Store';
-import { ITask, Task } from '../modules/Task';
+import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import FormControl from "react-bootstrap/FormControl";
+import { ITask, TPriority, Task } from '../modules/Task';
+import { STORAGE_KEY } from '../Data/consts';
 
 
 interface Props {
-  store: Store;
+  data: Array<ITask>;
+  setData: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
 
-export const FormTask = ({store}: Props) => {
-  
-  const [value, setValue] = useState(''); // input value
+export const FormTask = ({data, setData}: Props) => {
+  const [inputValue, setInputValue] = useState(''); // input inputValue
+  // const [isDisable, setDisabled] = useState(true); // активация кнопок формы
   
   // * submit
   // todo validation 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submited and save to storage');
-    const description: string = value.replace(/(\s\s*)/g, ' ').toLowerCase().trim();
-    const task: ITask = new Task(description, 'light');
-    store.addTask(task);
+    
+    const description: string = inputValue.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
+    const defaultPriority: TPriority = 'light';
+    const task: ITask = new Task(description, defaultPriority);
+    
+    // todo useStorage
+    setData((data) => {
+      const newArray: Array<ITask> = [...data, task];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newArray));
+      return newArray;
+    });
+
+    setInputValue(''); // очищаем поле ввода
   }
   
   // * simple button click
@@ -32,8 +43,13 @@ export const FormTask = ({store}: Props) => {
   // * reset
   const handleClickReset = (e: React.FormEvent<HTMLButtonElement>) => {
     console.log('click button reset', e.currentTarget);
+    setInputValue('');
   }
   
+  // * событие изменения input
+  const handleControlChange = (e: React.SyntheticEvent) => {
+    setInputValue((e.target as HTMLInputElement).value);
+  }
 
   return (
     <Form className='form-task d-flex justify-content my-3' onSubmit={handleSubmit}>
@@ -42,10 +58,10 @@ export const FormTask = ({store}: Props) => {
         placeholder='Начните вводить...'
         title='Просто введите краткое описание задачи'
         name='task'
-        value={value}
-        onChange={(e) => setValue(e.target.value)} // todo in handler
+        value={inputValue}
+        onChange={handleControlChange}
       />
-      <Button className='mx-2 ms-4' variant="primary" type="submit" onClick={handleButtonClick}>Submit</Button>
+      <Button className='ms-4 me-2' variant="primary" type="submit" onClick={handleButtonClick}>Submit</Button>
       <Button variant="warning" type="reset" onClick={handleClickReset}>Reset</Button>
     </Form>
   )

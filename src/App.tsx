@@ -6,76 +6,51 @@ import { TITLE, STORAGE_KEY } from './Data/consts';
 import { useState } from 'react';
 import { useToggle } from './modules/Hooks/useToggle';
 import { ModalForm } from './Components/ModalForm';
-import { getRandomId } from './modules/util';
 import { ITask } from './modules/Task';
 
 console.log('TITLE: ', TITLE);
 console.log('STORAGE_KEY: ', STORAGE_KEY);
 
 
-function App() {
+export const App = () => {
+
   const [isVisible, setVisible] = useToggle(false);
 
-  // DEBUG
-  const testData: Array<ITask> = [
-    {
-      'id': getRandomId(),
-      'description': 'Купить кота',
-      'priority': 'light',
-      'status': 'wait',
-    },
-    {
-      'id': getRandomId(),
-      'description': 'Купить кота',
-      'priority': 'light',
-      'status': 'wait',
-    },
-    {
-      'id': getRandomId(),
-      'description': 'Купить кота',
-      'priority': 'light',
-      'status': 'wait',
-    },
-    {
-      'id': getRandomId(),
-      'description': 'Обычно помыть кота',
-      'priority': 'light',
-      'status': 'wait',
-    },
-  ];
-
+  const rawData: string | null = localStorage.getItem(STORAGE_KEY);
+  const testData: Array<ITask> = (rawData) ? JSON.parse(rawData) : [];
   const [data, setData] = useState(testData);
-  
+
+
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    console.log('Remove click');
-    console.log(event.target);
-    console.log(id);
-    setData((data) => data.filter((task) => task.id !== id));
+    console.log('Remove click', id);
+    // remove from array
+    setData((data) => {
+      const newArray: Array<ITask> = data.filter((task) => task.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newArray)); // сохраняем в хранилище
+      return newArray;
+    });
   }
-  
+
   const handleDoneClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    console.log('Done click');
-    console.log(event.target);
-    console.log(id);
-    
-    setData((data) => data.map((task) => {
-      const newTask: ITask = (task.id === id) ? {...task, status: 'done'} : {...task};
-      return newTask;
-    }));
+    console.log('Done click', id);
+    // make task done and update array
+    setData((data) => {
+      const newArray = data.map((task) => {
+        const newTask: ITask = (task.id === id) ? { ...task, status: 'done' } : { ...task };
+        return newTask;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newArray)); // сохраняем в хранилище
+      return newArray;
+    });
   }
 
 
   return (
     <div className='app app-container  d-flex align-items-center justify-content-center flex-column'>
       <ModalForm isVisible={isVisible} />
-
       <Title text={TITLE} />
-
-      {/* <FormTask data={data} setData={setData}/> */}
-
+      <FormTask data={data} setData={setData} />
       <TableTask data={data} onRemove={handleRemoveClick} onDone={handleDoneClick} />
     </div>
   )
 }
-
-export default App
