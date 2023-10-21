@@ -1,21 +1,12 @@
 import { useState } from "react"
 
 
-// todo для модалки вызываем одноразово
+// todo для модалки вызываем одноразово только для закрытия
 // назвать useModal useShowModal
-// use toggle hook
-const useToggle = (initState: any) => {
+export const useToggle = (initState: any) => {
   const [value, setValue] = useState(initState);
-  
   const toggle = () => {
     setValue(!value);
   }
-  
   return [value, toggle];
 }
-
-export { useToggle };
-
-
-// todo useLocalStorage
-// todo useTask
