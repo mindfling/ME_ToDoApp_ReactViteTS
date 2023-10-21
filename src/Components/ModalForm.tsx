@@ -2,22 +2,23 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { trans } from '../modules/util';
 
 
 interface ModalProps {
-  isVisible: boolean;  
+  isVisible?: boolean;  
+  onHide: () => void;
 }
 
-export function ModalForm( {isVisible}: ModalProps ) {
-  const [show, setShow] = useState(isVisible);
+export function ModalForm( {onHide, isVisible}: ModalProps ) {
+  // const [show, setShow] = useState(isVisible);
   const [userName, setUserName] = useState('');
+  const [btnDisable, setDisable] = useState(true);
 
-  // закрыть
-  const handleClose = () => {
-    setShow(false);
-    console.log('it close');
-  }
+  // todo latUser -> nickName
+  // todo cyrUser -> userName
   
+
   // открыть
   const handleShow = () => {
     setShow(true);
@@ -28,44 +29,50 @@ export function ModalForm( {isVisible}: ModalProps ) {
     e.preventDefault();    
     console.log('userName: ', userName);
     alert(`Приветствуем тебя, ${userName}`);
-    handleClose();
+    // handleClose();
+    // onHide();
+  }
+
+  const handleInputChange = (e: React.SyntheticEvent) => {
+    const value: string = (e.target as HTMLInputElement).value;
+    setUserName(() => {
+      const cyrValue = value.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
+      const latValue = trans(cyrValue);
+      return latValue;
+    });
+    
   }
 
   return (
     <>
-      <Button variant='warning' className='mx-2' onClick={handleShow}>
-        show Модальное окно
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal Login</Modal.Title>
+      <Modal show={isVisible} onHide={onHide}>
+        <Modal.Header>
+          <Modal.Title>Modal Login Form</Modal.Title>
+          <p>debug {userName}</p>
         </Modal.Header>
-
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-
+          <Form onSubmit={onHide}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput">
               <Form.Label>Введите ваше имя</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Пользователь...'
                 name='user'
-                onChange={(e) => setUserName(e.target.value.trim())}
+                onChange={handleInputChange}
               />
             </Form.Group>
-            
           </Form>
         </Modal.Body>
-
         <Modal.Footer>
-
-          <Button variant="primary" type='submit' onClick={handleSubmit}>
+          <Button
+            variant="outline-primary"
+            type='submit'
+            onClick={handleSubmit}
+            disabled={btnDisable}
+          >
             Submit login
           </Button>
-
         </Modal.Footer>
-
       </Modal>
     </>
   );

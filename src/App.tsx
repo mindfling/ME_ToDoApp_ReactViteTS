@@ -14,7 +14,8 @@ console.log('STORAGE_KEY: ', STORAGE_KEY);
 
 export const App = () => {
 
-  const [isVisible, setVisible] = useToggle(false);
+  const [isVisible, setVisible] = useToggle(true);
+
 
   const rawData: string | null = localStorage.getItem(STORAGE_KEY);
   const testData: Array<ITask> = (rawData) ? JSON.parse(rawData) : [];
@@ -45,12 +46,27 @@ export const App = () => {
   }
 
 
+
+  const modalClose = () => {
+    setVisible(false)
+  }
+
+  console.log(isVisible);
+  
   return (
-    <div className='app app-container  d-flex align-items-center justify-content-center flex-column'>
-      <ModalForm isVisible={isVisible} />
-      <Title text={TITLE} />
-      <FormTask data={data} setData={setData} />
-      <TableTask data={data} onRemove={handleRemoveClick} onDone={handleDoneClick} />
+    <div className='app app-container d-flex align-items-center justify-content-center flex-column'>
+      { (isVisible) ? (
+        <>
+          <ModalForm isVisible={isVisible} onHide={modalClose} />
+          <h2>Обновите страницу</h2>
+        </>
+      ) :
+        (<>
+          <Title text={TITLE} />
+          <FormTask data={data} setData={setData} />
+          <TableTask data={data} onRemove={handleRemoveClick} onDone={handleDoneClick} />
+        </>)
+      }
     </div>
   )
 }
