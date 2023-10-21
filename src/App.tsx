@@ -22,7 +22,7 @@ export const App = () => {
   });
   const [data, setData] = useLocalStorage([], `${STORAGE_KEY}_${user.nickName}`);
 
-  
+
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
     setData((data) => {
       const newArray: Array<ITask> = data.filter((task) => task.id !== id);
@@ -48,24 +48,21 @@ export const App = () => {
 
   return (
     <div className='app app-container d-flex align-items-center justify-content-center flex-column'>
-      {(isVisible) ? (
-        <>
-          <ModalForm
-            user={user}
-            setUser={setUser}
-            isVisible={isVisible}
-            onHide={modalClose}
-          />
-          <p>Обновите страницу</p>
-        </>
-      ) : (
+      { isVisible && (
+        <ModalForm
+          user={user}
+          setUser={setUser}
+          isVisible={isVisible}
+          onHide={modalClose}
+        />
+      )}
+      { !isVisible && (
         <>
           <Title text={TITLE} />
           <FormTask data={data} setData={setData} />
           <TableTask data={data} onRemove={handleRemoveClick} onDone={handleDoneClick} />
         </>
-      )
-      }
+      )}
     </div>
   )
 }
