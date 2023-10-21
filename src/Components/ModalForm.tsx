@@ -10,48 +10,53 @@ interface ModalProps {
   onHide: () => void;
 }
 
+interface User {
+  cyrName: string; // имя на кириллице
+  nickName: string; // ник пользователя на латинице
+}
+
 export function ModalForm( {onHide, isVisible}: ModalProps ) {
-  // const [show, setShow] = useState(isVisible);
-  const [userName, setUserName] = useState('');
+  const [user, setUser] = useState({
+    cyrName: '',
+    nickName: '',
+  });
   const [btnDisable, setDisable] = useState(true);
-
-  // todo latUser -> nickName
-  // todo cyrUser -> userName
-  
-
-  // открыть
-  const handleShow = () => {
-    setShow(true);
-    console.log('it open');
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();    
-    console.log('userName: ', userName);
-    alert(`Приветствуем тебя, ${userName}`);
-    // handleClose();
-    // onHide();
+    alert(`Приветствуем тебя, ${user.cyrName} ${user.nickName}`);
+    onHide();
   }
 
   const handleInputChange = (e: React.SyntheticEvent) => {
     const value: string = (e.target as HTMLInputElement).value;
-    setUserName(() => {
-      const cyrValue = value.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
-      const latValue = trans(cyrValue);
-      return latValue;
+    setUser((): User => {
+      const cyrName = value.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
+      const nickName = trans(cyrName);
+      setDisable(() => {
+        if (nickName.length >= 4) {
+          return false; // активируем кнопку формы если ввел имя
+        }
+        return true;
+      });
+      return { cyrName, nickName};
     });
-    
   }
 
   return (
     <>
-      <Modal show={isVisible} onHide={onHide}>
+      <Modal 
+        show={isVisible}
+        onHide={onHide}
+        backdrop="static"
+        keyboard={false}
+      >
         <Modal.Header>
           <Modal.Title>Modal Login Form</Modal.Title>
-          <p>debug {userName}</p>
+          <p>debug {user.cyrName} {user.nickName} </p>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={onHide}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput">
               <Form.Label>Введите ваше имя</Form.Label>
               <Form.Control
@@ -65,7 +70,7 @@ export function ModalForm( {onHide, isVisible}: ModalProps ) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="outline-primary"
+            variant="primary"
             type='submit'
             onClick={handleSubmit}
             disabled={btnDisable}
