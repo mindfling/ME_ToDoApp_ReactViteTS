@@ -6,7 +6,7 @@ import { trans } from '../modules/util';
 
 
 interface ModalProps {
-  isVisible?: boolean;
+  isVisible?: boolean;  
   onHide: () => void;
 }
 
@@ -15,43 +15,32 @@ interface User {
   nickName: string; // ник пользователя на латинице
 }
 
-export function ModalForm({ onHide, isVisible }: ModalProps) {
+export function ModalForm( {onHide, isVisible}: ModalProps ) {
   const [user, setUser] = useState({
     cyrName: '',
     nickName: '',
   });
   const [btnDisable, setDisable] = useState(true);
-  const [inputValue, setInput] = useState('test5');
-
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setUser((): User => {
-      const cyrName = inputValue.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
-      const nickName = trans(cyrName);
-
-      return { cyrName, nickName };
-    });
-    alert(`Приветствуем тебя, ${user.cyrName} ${user.nickName}`);
-
-
+    e.preventDefault();    
+    // alert(`Приветствуем тебя, ${user.cyrName} ${user.nickName}`);
     onHide();
   }
 
   const handleInputChange = (e: React.SyntheticEvent) => {
     const value: string = (e.target as HTMLInputElement).value;
-
-    setDisable(() => {
-      if (value.length >= 4) {
-        return false; // активируем кнопку формы если ввел имя
-      }
-      return true;
+    setUser((): User => {
+      const cyrName = value.replace(/^\s+|\s+$|\s+(?=\s)/g, "").toLowerCase();
+      const nickName = trans(cyrName);
+      setDisable(() => {
+        if (nickName.length >= 4) {
+          return false; // активируем кнопку формы если ввел имя
+        }
+        return true;
+      });
+      return { cyrName, nickName};
     });
-
-    // setInput(value);
-    setInput(value)
-
   }
 
   return (
@@ -70,7 +59,6 @@ export function ModalForm({ onHide, isVisible }: ModalProps) {
                 placeholder='Пользователь...'
                 name='user'
                 onChange={handleInputChange}
-                value={inputValue}
               />
             </Form.Group>
           </Form>
