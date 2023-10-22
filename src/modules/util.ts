@@ -71,8 +71,3 @@ export const trans = (word: string): string => {
   return result;
 };
 
-
-// login to key
-export const getLoginAuthStorageKey = () => {
-
-};

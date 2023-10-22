@@ -16,6 +16,7 @@ export const App = () => {
 
   const [isVisible, setVisible] = useToggle(true);
 
+  // ! it works only with one key !!!
   const [data, setData] = useLocalStorage([], STORAGE_KEY);
 
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {

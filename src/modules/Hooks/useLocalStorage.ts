@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ITask } from "../Task";
 
-
+// ! it works ! but only tasks
 // * hook для localStorage
 export const useLocalStorage = (initValue: Array<ITask>, key: string) : [Array<ITask>, React.Dispatch<React.SetStateAction<ITask[]>>] => {
 

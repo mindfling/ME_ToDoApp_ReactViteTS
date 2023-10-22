@@ -24,7 +24,7 @@ export function ModalForm( {onHide, isVisible}: ModalProps ) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();    
-    alert(`Приветствуем тебя, ${user.cyrName} ${user.nickName}`);
+    // alert(`Приветствуем тебя, ${user.cyrName} ${user.nickName}`);
     onHide();
   }
 

@@ -4,6 +4,7 @@ import { ITask } from "./Task";
 
 type TStorage = string | null; //?
 
+// todo del it
 
 // * Класс Хранилище
 export class Store {
